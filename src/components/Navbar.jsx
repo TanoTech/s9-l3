@@ -11,7 +11,7 @@ import React from 'react';
 function navbar({ onSearch }) {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const searchValue = e.target.elements.searchInput.value; // Accedi al valore dell'input tramite l'elemento del form
+    const searchValue = e.target.elements.searchInput.value; 
     onSearch(searchValue);
   };
 
