@@ -24,21 +24,24 @@ class DisplayBooks extends React.Component {
         const { selectedAsin } = this.state;
         const { searchQuery } = this.props;
 
-        const filteredFantasy = fantasy.filter((libro) =>
+        const filteredFantasy = searchQuery ? fantasy.filter((libro) =>
             libro.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        const filteredHorror = horror.filter((libro) =>
+        ) : fantasy ;
+
+        const filteredHorror = searchQuery ? horror.filter((libro) =>
             libro.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        const filteredHistory = history.filter((libro) =>
+        ) : horror;
+
+        const filteredHistory = searchQuery ? history.filter((libro) =>
             libro.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        const filteredScifi = scifi.filter((libro) =>
+        ) : history;
+
+        const filteredScifi = searchQuery ? scifi.filter((libro) =>
             libro.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        const filteredRomance = romance.filter((libro) =>
+        ) : scifi;
+        const filteredRomance = searchQuery ? romance.filter((libro) =>
             libro.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+        ) : romance;
     
         return (
             <Container>

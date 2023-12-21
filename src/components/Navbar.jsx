@@ -9,11 +9,10 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 
 function navbar({ onSearch }) {
-  let searchInput = React.createRef();
-
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    onSearch(searchInput.current.value);
+    const searchValue = e.target.elements.searchInput.value; // Accedi al valore dell'input tramite l'elemento del form
+    onSearch(searchValue);
   };
 
   return (
@@ -38,7 +37,7 @@ function navbar({ onSearch }) {
           </Nav>
           <Form className="d-flex" onSubmit={handleSearchSubmit}>
             <Form.Control
-              ref={searchInput}
+              name='searchInput'
               type="search"
               placeholder="Search"
               className="me-2"
