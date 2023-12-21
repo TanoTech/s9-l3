@@ -6,8 +6,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Navbar.css'
 import { Link } from 'react-router-dom';
+import React from 'react';
 
-function navbar() {
+function navbar({ onSearch }) {
+  let searchInput = React.createRef();
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchInput.current.value);
+  };
+
   return (
     <Navbar expand="lg">
       <Container fluid>
@@ -28,14 +36,15 @@ function navbar() {
               <NavDropdown.Item as={Link} to='/scifi'>Scifi</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleSearchSubmit}>
             <Form.Control
+              ref={searchInput}
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" type="submit">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

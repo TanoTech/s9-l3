@@ -18,8 +18,13 @@ class RomanceBook extends Component {
 
    
     render() {
-         const { displayCount } = this.state;
-         const displayedBooks = romance.slice(0, displayCount);
+        const {displayCount} = this.state;
+        const displayedBooks = romance.slice(0, displayCount)
+        const {searchQuery} = this.props;
+        const filteredRomance = searchQuery ? displayedBooks.filter((libro) =>
+            libro.title.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        : displayedBooks;
         return (
             <Container fluid>
                 <h1 as={Link} to='/romance'>Romance</h1>
@@ -36,8 +41,8 @@ class RomanceBook extends Component {
                 </Form>
 
                 <Row>
-                    {displayedBooks.map((libro, index) => (
-                        <Col key={index} md={2} xs={12} sm={6}>
+                    {filteredRomance.map((libro, index) => (
+                        <Col key={index} lg={2} md={3} xs={7} sm={5}>
                             <Card style={{ width: '100%' }}>
                                 <Card.Img variant="top" src={libro.img} className="img-fluid" />
                                 <Card.Body>

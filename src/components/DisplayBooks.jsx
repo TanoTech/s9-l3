@@ -22,14 +22,32 @@ class DisplayBooks extends React.Component {
 
     render() {
         const { selectedAsin } = this.state;
+        const { searchQuery } = this.props;
+
+        const filteredFantasy = fantasy.filter((libro) =>
+            libro.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        const filteredHorror = horror.filter((libro) =>
+            libro.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        const filteredHistory = history.filter((libro) =>
+            libro.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        const filteredScifi = scifi.filter((libro) =>
+            libro.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        const filteredRomance = romance.filter((libro) =>
+            libro.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    
         return (
-            <Container fluid>
+            <Container>
                 <h1>Fantasy</h1>
                 <Carousel>
                     <Carousel.Item>
                         <Row>
-                            {fantasy.slice(0, 6).map((libro, index) => (
-                                <Col key={index} md={2} xs={12} sm={6}>
+                            {filteredFantasy.slice(0, 6).map((libro, index) => (
+                                <Col key={index} lg={2} md={3} xs={7} sm={5}>
                                     <Card style={{ width: '100%' }}
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
                                         onClick={() => this.handleBookClick(libro.asin)}>
@@ -48,7 +66,7 @@ class DisplayBooks extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <Row>
-                            {fantasy.slice(6, 12).map((libro, index) => (
+                            {filteredFantasy.slice(6, 12).map((libro, index) => (
                                 <Col key={index} md={2} xs={12} sm={6}>
                                     <Card style={{ width: '100%' }}
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
@@ -68,7 +86,7 @@ class DisplayBooks extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <Row>
-                            {fantasy.slice(12, 18).map((libro, index) => (
+                            {filteredFantasy.slice(12, 18).map((libro, index) => (
                                 <Col key={index} md={2} xs={12} sm={6}>
                                     <Card style={{ width: '100%' }}
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
@@ -88,7 +106,7 @@ class DisplayBooks extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <Row>
-                            {fantasy.slice(18, 24).map((libro, index) => (
+                            {filteredFantasy.slice(18, 24).map((libro, index) => (
                                 <Col key={index} md={2} xs={12} sm={6}>
                                     <Card style={{ width: '100%' }}
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
@@ -108,7 +126,7 @@ class DisplayBooks extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <Row>
-                            {fantasy.slice(24, 30).map((libro, index) => (
+                            {filteredFantasy.slice(24, 30).map((libro, index) => (
                                 <Col key={index} md={2} xs={12} sm={6}>
                                     <Card style={{ width: '100%' }}
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
@@ -131,7 +149,7 @@ class DisplayBooks extends React.Component {
                 <Carousel>
                     <Carousel.Item>
                         <Row>
-                            {history.slice(0, 6).map((libro, index) => (
+                            {filteredHistory.slice(0, 6).map((libro, index) => (
                                 <Col key={index} md={2} xs={12} sm={6}>
                                     <Card style={{ width: '100%' }}
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
@@ -151,7 +169,7 @@ class DisplayBooks extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <Row>
-                            {history.slice(6, 12).map((libro, index) => (
+                            {filteredHistory.slice(6, 12).map((libro, index) => (
                                 <Col key={index} md={2} xs={12} sm={6}>
                                     <Card style={{ width: '100%' }}
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
@@ -526,7 +544,7 @@ class DisplayBooks extends React.Component {
                                         className={selectedAsin === libro.asin ? "selected-book" : ""}
                                         onClick={() => this.handleBookClick(libro.asin)}>
                                         <Card.Img variant="top" src={libro.img} />
-                                        
+
                                         <ListGroup className="list-group-flush">
                                             <ListGroup.Item> {libro.price} €</ListGroup.Item>
                                             <ListGroup.Item><a href="#">Compra adesso</a></ListGroup.Item>
